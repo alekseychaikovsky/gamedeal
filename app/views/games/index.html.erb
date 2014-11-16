@@ -1,6 +1,17 @@
 <div class="page-header">
-  <h2>My games</h2>
-
-  <hr>
-  <%= link_to "Add a new game", new_game_path, class: "btn btn-primary" %>
+  <h2>My tracked games</h2>
 </div>
+
+<% if @games.any? %>
+  <ul>
+    <% @games.each do |game| %>
+      <li><%= game.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You don't have any games! Add some by clicking the button below</p>
+<% end %>
+
+<hr>
+<%= link_to "Add a new game", new_game_path, class: "btn btn-primary" %>
+
