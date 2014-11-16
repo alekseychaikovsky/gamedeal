@@ -1,11 +1,12 @@
 class GamesController < ApplicationController
   before_action :require_user
+
   def new
     @game = Game.new
   end
 
   def create
-    @game = Game.new(game_params)
+    @game = Game.where(name: game_params[:name].parameterize.gsub("-", " ").titleize).first_or_initialize
     @game.users << current_user
 
     if @game.save
