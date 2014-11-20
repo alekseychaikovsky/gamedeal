@@ -3,6 +3,11 @@ class Game < ActiveRecord::Base
   has_many :users, through: :tracked_games
 
   before_create :set_search_term
+  validates :name, presence: true
+
+  def to_s
+    name
+  end
 
   private
 

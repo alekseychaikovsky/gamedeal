@@ -13,6 +13,8 @@ gem 'spring',        group: :development
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'simple_form', '~> 3.1.0.rc2'
+gem 'mechanize'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

@@ -6,12 +6,15 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = Game.where(name: game_params[:name].parameterize.gsub("-", " ").titleize).first_or_initialize
-    @game.users << current_user
+    @game_name = game_params[:name].parameterize.gsub("-", " ").titleize
+    @game = Game.where(name: @game_name).first_or_create
+    @tracked_game = TrackedGame.new(user: current_user, game: @game)
 
-    if @game.save
+    if @tracked_game.save
       redirect_to games_path, notice: "#{@game.name} was added to your tracked games!"
     else
+      @game = Game.new
+      flash[:alert] = "#{@game_name} is already in your list of tracked games!"
       render :new
     end
   end
