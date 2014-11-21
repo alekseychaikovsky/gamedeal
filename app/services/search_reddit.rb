@@ -14,6 +14,7 @@ class SearchReddit
       Game.find_each do |game|
         if node_title.include?(game.search_term)
           node_links = node.css('a').map { |link| link['href'] }
+          comments_link = ""
           node_links.each do |link|
             comments_link = link if link.include?("/comments/")
           end
