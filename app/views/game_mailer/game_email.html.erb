@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Great news, <%= @user.name %>. Your tracked game <%= @game.name %> is finally on sale!!!</h1>
+    <p>
+      Check out the sale <a href="<%= @deal_url %>">here.</a>
+      <br>
+    </p>
+    <p>
+      See what others have to say about this deal <a href="<%= @comments_url %>">here.</a>
+    </p>
+    <p>
+      Thanks for using aleksey-gamedeals and have a great day!
+      <br>
+    </p>
+    <p>
+      Be notified when your favorite games are on sale!
+      <a href="https://aleksey-gamedeals.herokuapp.com/">Add more games!</a>
+    </p>
+  </body>
+</html>
