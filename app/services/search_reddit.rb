@@ -23,6 +23,9 @@ class SearchReddit
             game.comments_url = comments_link
             game.deal_url = node_links.first
             game.save
+            game.users.each do |user|
+              GameMailer.game_email(user, game).deliver
+            end
           end
         end
       end
