@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116030144) do
+ActiveRecord::Schema.define(version: 20141126020538) do
 
   create_table "games", force: true do |t|
     t.string   "name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20141116030144) do
     t.string   "comments_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "trackers",     default: 0
   end
 
   create_table "tracked_games", force: true do |t|

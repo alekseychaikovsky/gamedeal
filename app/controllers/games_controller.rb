@@ -11,6 +11,8 @@ class GamesController < ApplicationController
     @tracked_game = TrackedGame.new(user: current_user, game: @game)
 
     if @tracked_game.save
+      trackers = @game.trackers
+      @game.update(trackers: trackers + 1)
       redirect_to games_path, notice: "#{@game.name} was added to your tracked games!"
     else
       @game = Game.new
@@ -21,6 +23,16 @@ class GamesController < ApplicationController
 
   def index
     @games = current_user.games
+    @top_games = Game.order('trackers DESC').limit(10)
+  end
+
+  def destroy
+    game = Game.find(params[:id])
+    @tracked_game = TrackedGame.where(game: game, user: current_user).first
+    @tracked_game.destroy
+    trackers = game.trackers
+    game.update(trackers: trackers - 1)
+    redirect_to games_path, notice: "#{game.name} was removed from your list."
   end
 
   private

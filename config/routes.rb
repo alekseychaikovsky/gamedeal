@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
-  resources :games, only: [:new, :index, :create]
+  resources :games, only: [:new, :index, :create, :destroy]
 end
