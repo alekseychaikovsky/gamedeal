@@ -5,7 +5,7 @@ class GameDeal < ActiveRecord::Base
 
   def send_game_email
     game.users.each do |user|
-      GameMailer.game_email(user, game).deliver
+      GameMailer.game_email(user, game, self).deliver
     end
   end
 end
