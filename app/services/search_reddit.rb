@@ -19,13 +19,8 @@ class SearchReddit
             comments_link = link if link.include?("/comments/")
           end
 
-          if comments_link && !(comments_link == game.comments_url)
-            game.comments_url = comments_link
-            game.deal_url = node_links.first
-            game.save
-            game.users.each do |user|
-              GameMailer.game_email(user, game).deliver
-            end
+          unless GameDeal.exists?(comments_url: comments_link)
+            game.game_deals.create(comments_url: comments_link, deal_url: node_links.first)
           end
         end
       end
